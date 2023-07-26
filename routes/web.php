@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -32,4 +33,17 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+});
+Route::get('/abdelfatah',function(){
+    Log::channel('abdelfatah')->info('hi this is abdelfatah using logging',['user'=>1]);
+    Log::debug('An informational message.');
+    $message='this is just abdelfatah trying to test them all for logging';
+        Log::emergency($message);
+        Log::alert($message);
+        Log::critical($message);
+        Log::error($message);
+        Log::warning($message);
+        Log::notice($message);
+        Log::info($message);
+        Log::debug($message);
 });

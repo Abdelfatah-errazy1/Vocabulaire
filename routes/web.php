@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\VocabulaireController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,10 @@ Route::name('vocabulaire.')->prefix('vocabulaire')->controller(VocabulaireContro
     Route::get('/store','store')->name('store');
 });
 Route::name('auth.')->prefix('auth')->controller(LoginController::class)->group(function(){
-    Route::get('/','index')->name('index');
     Route::get('/login','login')->name('login');
     Route::post('/login','store')->name('session');
+});
+Route::name('auth.')->prefix('auth')->controller(RegisterController::class)->group(function(){
+    Route::get('/register','create')->name('create');
+    Route::post('/register','store')->name('register');
 });

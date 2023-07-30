@@ -1,7 +1,14 @@
 @extends('layouts.layouts')
 @section('content')
-  <div class="container">
-    <form action="{{ route('store.Vocabulaire') }}" method="POST">
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="https://www.sourcedart.org/">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Products</li>
+        </ol>
+    </nav>
+    <form action="{{ route('vocabulaire.store') }}" method="POST">
       @csrf
       <div class="mb-3">
         <label  class="form-label">word</label>
@@ -17,4 +24,5 @@
 
     </form>
   </div>
+</section>
 @endsection

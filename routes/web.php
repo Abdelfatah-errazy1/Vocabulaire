@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/vocabulaire',);
 Route::name('vocabulaire.')->prefix('vocabulaire')->controller(VocabulaireController::class)->group(function(){
     Route::get('/','index')->name('index');
-    Route::get('/create','index')->name('create');
+    Route::get('/create','create')->name('create');
     Route::get('/show','edit')->name('show');
+    Route::get('/store','store')->name('store');
 });

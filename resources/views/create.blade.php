@@ -4,8 +4,8 @@
   <div class="container py-5">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="https://www.sourcedart.org/">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Products</li>
+          <li class="breadcrumb-item"><a href="{{ route('vocabulaire.index') }}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">add new Vocabulaire</li>
         </ol>
     </nav>
     <form action="{{ route('vocabulaire.store') }}" method="POST">

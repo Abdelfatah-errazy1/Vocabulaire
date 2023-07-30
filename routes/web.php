@@ -24,7 +24,6 @@ Route::name('vocabulaire.')->prefix('vocabulaire')->controller(VocabulaireContro
 });
 Route::name('auth.')->prefix('auth')->controller(LoginController::class)->group(function(){
     Route::get('/','index')->name('index');
-    Route::get('/login','create')->name('login');
-    Route::get('/show','edit')->name('show');
-    Route::get('/store','store')->name('store');
+    Route::get('/login','login')->name('login');
+    Route::post('/login','store')->name('session');
 });

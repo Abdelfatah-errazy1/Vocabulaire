@@ -20,6 +20,6 @@ class VocabulaireController extends Controller
             'definition'=>'required|string',
         ]);
         Vocabulaire::create($validate);
-        return redirect( route('show.vacabulaire'));
+        return redirect( route('vocabulaire.index'));
     }
 }

@@ -21,7 +21,7 @@ Route::name('vocabulaire.')->prefix('vocabulaire')->controller(VocabulaireContro
     Route::get('/','index')->name('index');
     Route::get('/create','create')->name('create');
     Route::get('/show','edit')->name('show');
-    Route::get('/store','store')->name('store');
+    Route::post('/store','store')->name('store');
 });
 Route::name('auth.')->prefix('auth')->controller(LoginController::class)->group(function(){
     Route::get('/login','login')->name('login');

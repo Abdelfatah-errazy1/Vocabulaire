@@ -1,0 +1,14 @@
+body{
+  height: 100%
+}
+
+.footer {
+  /* Set a fixed height for the footer (adjust as needed) */
+  height: 60px;
+  /* Stick the footer to the bottom */
+  position: sticky;
+  bottom: 0;
+  /* Optional: Give it a background color and text color */
+  background-color: #f8f9fa;
+  color: #333;
+}

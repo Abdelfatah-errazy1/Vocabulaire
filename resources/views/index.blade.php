@@ -2,8 +2,8 @@
 @section('content')
 
 <div class="container">
-  <a href="{{ route('vocabulaire.create') }}" class="btn btn-primary">nouvelle word</a>
-  <table class="table table-hover">
+  <a href="{{ route('vocabulaire.create') }}" class="btn btn-primary mb-2">nouvelle word</a>
+  <table class="table  table-striped table-hover border ">
     <thead>
     <tr>
       <th scope="col">id</th>

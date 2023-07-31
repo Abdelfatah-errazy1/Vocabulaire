@@ -1,7 +1,6 @@
 @extends('layouts.layouts')
 @section('content')
 
-@dd(auth()->)
 <div class="container">
   <a href="{{ route('vocabulaire.create') }}" class="btn btn-primary">nouvelle word</a>
   <table class="table table-hover">

@@ -14,7 +14,9 @@
   </ul>
 
   <div class="col-md-3 text-end">
+    @guest
     <a  href="{{ route('auth.login') }}" class="btn btn-outline-primary me-2">Login</a>
-    <a href="{{ route('auth.create') }}" class="btn btn-primary">Sign-up</a>
+    <a href="{{ route('auth.create') }}" class="btn btn-primary">Sign-up</a>  
+    @endguest
   </div>
 </header>

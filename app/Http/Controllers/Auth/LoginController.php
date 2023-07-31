@@ -25,4 +25,8 @@ class LoginController extends Controller
         dd($request);
         return view('auth.login');
     }
+    public function logout(){
+        auth()->logout();
+        return redirect(route('auth.login'));
+    }
 }

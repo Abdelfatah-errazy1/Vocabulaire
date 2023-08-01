@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\EmailVerification;
 use Illuminate\Support\Str;
-
+use Illuminate\Auth\Events\Registered;
 class RegisterController extends Controller
 {
     public function create()  {
@@ -26,8 +26,9 @@ class RegisterController extends Controller
         // dd($validate);
         $user=User::create($validate);
       
-        Mail::to($user->email)->send(new EmailVerification($user));
+        // Mail::to($user->email)->send(new EmailVerification($user));
         auth()->login($user);
+        event(new Registered($user));
         return redirect(route('vocabulaire.index'));
     }
     public function verify($token)

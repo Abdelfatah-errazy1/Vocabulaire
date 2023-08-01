@@ -2,7 +2,13 @@
 @section('content')
 
 <div class="container">
-  <a href="{{ route('vocabulaire.create') }}" class="btn btn-primary mb-2">nouvelle word</a>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{ route('vocabulaire.index') }}">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">add new Vocabulaire</li>
+    </ol>
+</nav>
+  <a href="{{ route('vocabulaire.create') }}" class="btn btn-primary my-2">nouvelle word</a>
   <table class="table  table-striped table-hover border ">
     <thead>
     <tr>

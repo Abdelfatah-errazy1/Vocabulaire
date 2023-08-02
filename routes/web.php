@@ -27,16 +27,17 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('login/facebook', [SocialController::class, 'redirectToFacebook'])->name('login.facebook');
     Route::get('login/facebook/callback', [SocialController::class, 'handleFacebookCallback'])->name('facebook.callback');
     
+    Route::name('vocabulaire.')->prefix('vocabulaire')->controller(VocabulaireController::class)->group(function(){
+        Route::get('/','index')->name('index');
+        Route::get('/create','create')->name('create');
+        Route::get('/show','edit')->name('show');
+        Route::post('/store','store')->name('store');
+    });
 });
-Route::get('verify/{token}', [RegisterController::class,'verify'])->name('verify');
-
+    
+    Route::get('verify/{token}', [RegisterController::class,'verify'])->name('verify');
+    
 Route::redirect('/', '/vocabulaire',);
-Route::name('vocabulaire.')->prefix('vocabulaire')->controller(VocabulaireController::class)->group(function(){
-    Route::get('/','index')->name('index');
-    Route::get('/create','create')->name('create');
-    Route::get('/show','edit')->name('show');
-    Route::post('/store','store')->name('store');
-});
 Route::name('auth.')->prefix('auth')->controller(LoginController::class)->group(function(){
     Route::get('/login','login')->name('login');
     Route::post('/login','store')->name('session');
@@ -47,10 +48,10 @@ Route::name('auth.')->prefix('auth')->controller(RegisterController::class)->gro
     Route::post('/register','store')->name('register');
 });
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
- 
+
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
- 
+    
     return redirect('/home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 

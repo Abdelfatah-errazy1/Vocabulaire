@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -18,23 +16,57 @@ class SocialController extends Controller
 
     public function handleGoogleCallback()
     {
-        $user = Socialite::driver('google')->stateless()->user();
-         $authenticatedUser = User::firstOrCreate([
-            'email' => $user->email,
-            'name' => $user->name,
-            // Other user data you might want to store
-        ]);
-        return redirect()->route('dashboard');
+        $userSocialite = Socialite::driver('google')->stateless()->user();
+        
+        $user=User::query()->where('google_id',$userSocialite->user['id'])->first();
+        if (!$user){
+
+            $user = User::create([
+               'email' => $userSocialite->user['email'],
+               'first_name' => $userSocialite->user['given_name'],
+               'last_name' => $userSocialite->user['family_name'],
+               'google_id' => $userSocialite->user['id'],
+            //    'email_verified_at' => $userSocialite->user['email_verified'],
+               'password' => bcrypt(123),
+               
+           ]);
+        }
+        Auth::login($user);
+
+        return redirect(route('vocabulaire.index'));
     }
+
 
     public function redirectToFacebook()
     {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver('facebook')->stateless()->redirect();
     }
 
     public function handleFacebookCallback()
     {
-        $user = Socialite::driver('facebook')->user();
-        // Process user data and authentication logic here
+        try {
+            $userSocialite = Socialite::driver('facebook')->stateless()->user();
+        } catch (\Exception $e) {
+            // Handle authentication error, e.g., log the error and redirect back with a message
+            return redirect()->route('login')->with('error', 'Facebook authentication failed.');
+        }
+
+        
+        $user=User::query()->where('facebook_id',$userSocialite->user['id'])->first();
+        if (!$user){
+
+            $user = User::create([
+               'email' => $userSocialite->user['email'],
+               'first_name' => $userSocialite->user['given_name'],
+               'last_name' => $userSocialite->user['family_name'],
+               'google_id' => $userSocialite->user['id'],
+            //    'email_verified_at' => $userSocialite->user['email_verified'],
+               'password' => bcrypt(123),
+               
+           ]);
+        }
+        Auth::login($user);
+
+        return redirect()->route('vocabulaire.index'); // Replace 'dashboard' with the desired route
     }
 }

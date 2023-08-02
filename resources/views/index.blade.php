@@ -1,6 +1,6 @@
 @extends('layouts.layouts')
 @section('content')
-
+{{-- @dd(Auth::check()) --}}
 <div class="container">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">

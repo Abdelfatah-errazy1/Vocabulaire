@@ -50,9 +50,9 @@
                   <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
                 </div>
       
-                <a class="btn btn-lg btn-block btn-primary w-100" style="background-color: #dd4b39;"
+                <a href="{{ route('login.google') }}" class="btn btn-lg btn-block btn-primary w-100" style="background-color: #dd4b39;"
                 ><i class="fab fa-google me-2"></i>Continue with Google</a>
-                <a class="btn btn-primary btn-lg btn-block w-100 my-2" style="background-color: #3b5998" href="#!"
+                <a href="{{ route('login.facebook') }}" class="btn btn-primary btn-lg btn-block w-100 my-2" style="background-color: #3b5998"
                   role="button">
                   <i class="fab fa-facebook-f me-2"></i>Continue with Facebook
                 </a>

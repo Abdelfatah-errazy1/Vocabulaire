@@ -28,7 +28,7 @@ class RegisterController extends Controller
       
         // Mail::to($user->email)->send(new EmailVerification($user));
         auth()->login($user);
-        event(new Registered($user));
+        // event(new Registered($user));
         return redirect(route('vocabulaire.index'));
     }
     public function verify($token)

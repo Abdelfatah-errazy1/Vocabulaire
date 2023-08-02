@@ -19,6 +19,15 @@ use Illuminate\Support\Facades\Route;
 // Auth::routes(
 //     ['verify' => true]
 // );
+use App\Http\Controllers\Auth\SocialController;
+Route::group(['middleware' => 'web'], function () {
+    // Your Socialite routes here
+    Route::get('login/google', [SocialController::class, 'redirectToGoogle'])->name('login.google');
+    Route::get('login/google/callback', [SocialController::class, 'handleGoogleCallback'])->name('google.callback');
+    Route::get('login/facebook', [SocialController::class, 'redirectToFacebook'])->name('login.facebook');
+    Route::get('login/facebook/callback', [SocialController::class, 'handleFacebookCallback'])->name('facebook.callback');
+    
+});
 Route::get('verify/{token}', [RegisterController::class,'verify'])->name('verify');
 
 Route::redirect('/', '/vocabulaire',);

@@ -73,11 +73,11 @@
                 <i class="fab fa-google"></i>
               </a>
 
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-twitter"></i>
-              </button>
+              <a  href="{{ route('login.linkedin') }}" class="btn btn-link btn-floating mx-1">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
 
-              <a href="{{ route('login.github') }}" type="button" class="btn btn-link btn-floating mx-1">
+              <a href="{{ route('login.github') }}" class="btn btn-link btn-floating mx-1">
                 <i class="fab fa-github"></i>
               </a>
             </div>

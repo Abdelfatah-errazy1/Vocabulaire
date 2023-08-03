@@ -83,6 +83,31 @@ class SocialController extends Controller
         Auth::login($user);
         return redirect()->route('vocabulaire.index'); 
     }
+    public function redirectToLinkedIn()
+    {
+        return Socialite::driver('linkedin')->redirect();
+    }
+    public function handleLinkedInCallback()
+    {
+        try {
+            $userSocialite = Socialite::driver('linkedin')->stateless()->user();
+        } catch (\Exception $e) {
+            return redirect()->route('login')->with('error', 'linkedin authentication failed.');
+        }     
+        $user=User::query()->where('linkedin_id',$userSocialite->user['id'])->first();
+        if (!$user){
+
+            $user = User::create([
+                'email' => $userSocialite->user['email'],
+                'first_name' => $userSocialite->user['login'],
+                'last_name' => $userSocialite->user['login'],
+                'linkedin_id' => $userSocialite->user['id'],
+                'password' => bcrypt(123),  
+            ]);
+        }
+        Auth::login($user);
+        return redirect()->route('vocabulaire.index'); 
+    }
 }
 
       

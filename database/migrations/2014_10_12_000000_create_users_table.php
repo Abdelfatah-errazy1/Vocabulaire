@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('email_verification_token')->nullable()->unique();
             $table->string('google_id')->nullable();
             $table->string('facebook_id')->nullable();
+            $table->string('github_id')->nullable();
 
             $table->string('password')->nullable();
             $table->rememberToken();

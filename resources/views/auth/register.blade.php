@@ -77,9 +77,9 @@
                 <i class="fab fa-twitter"></i>
               </button>
 
-              <button type="button" class="btn btn-link btn-floating mx-1">
+              <a href="{{ route('login.github') }}" type="button" class="btn btn-link btn-floating mx-1">
                 <i class="fab fa-github"></i>
-              </button>
+              </a>
             </div>
           </form>
         </div>

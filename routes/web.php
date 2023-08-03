@@ -27,6 +27,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('login/facebook', [SocialController::class, 'redirectToFacebook'])->name('login.facebook');
     Route::get('login/facebook/callback', [SocialController::class, 'handleFacebookCallback'])->name('facebook.callback');
     
+    Route::get('login/github', [SocialController::class, 'redirectToGithub'])->name('login.github');
+    Route::get('login/github/callback', [SocialController::class, 'handleGithubCallback'])->name('github.callback');
+    
     Route::name('vocabulaire.')->prefix('vocabulaire')->controller(VocabulaireController::class)->group(function(){
         Route::get('/','index')->name('index');
         Route::get('/create','create')->name('create');

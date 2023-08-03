@@ -19,6 +19,14 @@
         <textarea class="form-control" name="definition" rows="3"></textarea>
       </div>
       <div class="mb-3">
+        <label  class="form-label">language</label>
+        <select class="form-control" name="language" >
+          <option value="1">English</option>
+          <option value="2">francais</option>
+          <option value="3">allemand</option>
+        </select>
+      </div>
+      <div class="mb-3">
         <button class="btn btn-primary" type="submit" >ajouter</button>
       </div>
 

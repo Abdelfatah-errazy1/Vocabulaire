@@ -9,5 +9,5 @@ class Vocabulaire extends Model
 {
     use HasFactory;
     
-    protected $fillable=['word','definition'];
+    protected $fillable=['word','definition','quiz'];
 }

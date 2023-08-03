@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 //     ['verify' => true]
 // );
 use App\Http\Controllers\Auth\SocialController;
+use App\Http\Controllers\QuizController;
+
 Route::group(['middleware' => 'web'], function () {
     // Your Socialite routes here
     Route::get('login/google', [SocialController::class, 'redirectToGoogle'])->name('login.google');
@@ -34,6 +36,12 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('login/linkedin/callback', [SocialController::class, 'handleLinkedInCallback']);
     
     Route::name('vocabulaire.')->prefix('vocabulaire')->controller(VocabulaireController::class)->group(function(){
+        Route::get('/','index')->name('index');
+        Route::get('/create','create')->name('create');
+        Route::get('/show','edit')->name('show');
+        Route::post('/store','store')->name('store');
+    });
+    Route::name('quizzes.')->prefix('quizzes')->controller(QuizController::class)->group(function(){
         Route::get('/','index')->name('index');
         Route::get('/create','create')->name('create');
         Route::get('/show','edit')->name('show');

@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Quiz extends Model
 {
     use HasFactory;
+    public $table='quizzes';
+    protected  $fillable=[
+        'score_max',
+        'last_score',
+        'title',
+        'language'
+    ];
 }

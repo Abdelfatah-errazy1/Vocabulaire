@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 class QuizController extends Controller
 {
     //
+    public function language()  {
+        return view('pages.quizzes.language');
+    }
     public function getQuiz() {
         $quizzes_id=Quiz::query()
         ->join('vocabulaires', 'quizzes.id', '=', 'vocabulaires.quiz')

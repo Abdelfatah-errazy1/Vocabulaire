@@ -33,7 +33,7 @@
           <a class="nav-link" href="{{ route('vocabulaire.index') }}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Quiz</a>
+          <a class="nav-link" href="{{ route('quizzes.language') }}">Quiz</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Languages</a>

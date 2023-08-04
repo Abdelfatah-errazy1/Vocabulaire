@@ -9,11 +9,13 @@ use Illuminate\Http\Request;
 class VocabulaireController extends Controller
 {
     public function index()  {
-        $vocabulaires=Vocabulaire::query()->where('user',auth()->user()->id)->paginate(10);
-        return view('index',compact('vocabulaires'));
+        $vocabulaires=Vocabulaire::query()
+        ->where('user',auth()->user()->id)
+        ->paginate(10);
+        return view('pages.vocabulaires.index',compact('vocabulaires'));
     } 
     public function create()  {
-        return view('create');
+        return view('pages.vocabulaires.create');
     }  
     public function store(Request $r)  {
         $validate=$r->validate([

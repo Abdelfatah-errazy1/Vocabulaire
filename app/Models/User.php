@@ -30,6 +30,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'linkedin_id',
         'facebook_id'
     ];
+    public function vocabulaires(){
+        return $this->hasMany(Vocabulaire::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

@@ -15,4 +15,10 @@ class Quiz extends Model
         'title',
         'language'
     ];
+
+
+    public function vocabulaires(){
+        return $this->hasMany(Vocabulaire::class,);
+    }
+ 
 }

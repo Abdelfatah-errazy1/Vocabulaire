@@ -72,3 +72,8 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 Route::get('/email/verify', function () {
     return view('emails.verification');
 })->middleware('auth')->name('verification.notice');
+
+
+Route::get('/test',function(){
+    return view('pages.quizzes.exemple');
+});

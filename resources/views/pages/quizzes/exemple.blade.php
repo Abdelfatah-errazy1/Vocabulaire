@@ -5,10 +5,7 @@
   <div class="content">
       <a href="#"><span class="fa fa-angle-left pr-2"></span>Back</a>
       <p class="text-muted">Multiple Choice Question</p>
-      <p class="text-justify h5 pb-2 font-weight-bold">What did Radha Krishnan (Cassius Clay at the time) wear
-        while
-        flying to Rome for
-          the 1960 Games?</p>
+      <p class="text-justify h5 pb-2 font-weight-bold">What did mean ugly?</p>
           <div class="options py-3">
           <label class="rounded p-2 option">
               His boxing gloves

@@ -23,15 +23,17 @@ class VocabulaireController extends Controller
             'definition'=>'required|string',
             'language'=>'required|in:1,2,3',
         ]);
-        $quiz= Quiz::query()->latest('id')->first();
-        if($quiz){
-            $quiz_id = $quiz->id ;
-            $number_words=Vocabulaire::where('quiz',$quiz_id)->count();
+
+        $vacabulaires= Vocabulaire::query()->where('user',auth()->user()->id)->latest('quiz')->first();
+        if($vacabulaires){
+            $quiz_id = $vacabulaires->quiz ;
+            $number_words=Vocabulaire::where('quiz',$quiz_id)
+            ->where('user',auth()->user()->id)->count();
 
             // dd($number_words);
             if($number_words>10){
                 $quiz_id= Quiz::create([
-                    'title'=>'quiz number '.$quiz->id+2,
+                    'title'=>'quiz number '.$vacabulaires->quiz +2,
                     'score_max'=>0,
                     'last_score'=>0,
                     'language'=>$validate['language'],
@@ -41,7 +43,7 @@ class VocabulaireController extends Controller
                 }
         }else{
             $quiz_id= Quiz::create([
-                'title'=>'quiz number 1 ',
+                'title'=>'quiz number 1 of user : '.auth()->user()->first_name,
                 'score_max'=>0,
                 'last_score'=>0,
                 'language'=>$validate['language'],
@@ -50,7 +52,7 @@ class VocabulaireController extends Controller
         }
         $validate['quiz']=$quiz_id;
         $validate['user']=auth()->user()->id;
-        // dd($quiz_id);
+        // dd($validate);
         $vocabulaire=Vocabulaire::create($validate);
         return redirect( route('vocabulaire.index'));
     }

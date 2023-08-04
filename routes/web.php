@@ -35,7 +35,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('login/linkedin', [SocialController::class, 'redirectToLinkedIn'])->name('login.linkedin');
     Route::get('login/linkedin/callback', [SocialController::class, 'handleLinkedInCallback']);
     
-    Route::name('vocabulaire.')->prefix('vocabulaire')->controller(VocabulaireController::class)->group(function(){
+    Route::middleware('auth')->name('vocabulaire.')->prefix('vocabulaire')->controller(VocabulaireController::class)->group(function(){
         Route::get('/','index')->name('index');
         Route::get('/create','create')->name('create');
         Route::get('/show','edit')->name('show');

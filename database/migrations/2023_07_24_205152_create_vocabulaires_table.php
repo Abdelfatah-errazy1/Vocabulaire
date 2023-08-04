@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('word',50)->unique();
             $table->text('definition');
             $table->foreignId('quiz')->references('id')->on('quizzes');
+            $table->foreignId('user')->references('id')->on('users');
             $table->timestamps();
         });
     }

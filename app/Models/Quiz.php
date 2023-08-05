@@ -18,7 +18,7 @@ class Quiz extends Model
 
 
     public function vocabulaires(){
-        return $this->hasMany(Vocabulaire::class,);
+        return $this->hasMany(Vocabulaire::class,'quiz');
     }
  
 }

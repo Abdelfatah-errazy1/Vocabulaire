@@ -16,15 +16,17 @@ class QuizController extends Controller
         ->join('vocabulaires', 'quizzes.id', '=', 'vocabulaires.quiz')
         ->select('quizzes.id')
         ->groupBy('quizzes.id')
-        ->having('COUNT(vocabulaires.id) ','3')->get();
+        ->havingRaw('COUNT(quizzes.id) >= 2')        
+        ->get();
         // $quizzes_id=Quiz::has('vocabulaires', '>=', 2);
-        dd($quizzes_id);
         // Get a random key/index from the array
-        $randomKey = array_rand($quizzes_id);
-
-        // Use the random key to access the random number
-        $randomNumber = $quizzes_id[$randomKey];
-        // $numb
-        return view('pages.quizzes.exemple',compact('random'));
+        foreach($quizzes_id as $index=>$value){
+            $ids[$index]=$value->id;
+        }
+        $randomKey = array_rand($ids);
+        $quiz_id = $quizzes_id[$randomKey]->id;
+        $quiz=Quiz::query()->where('quizzes.id','=',$quiz_id)->with('vocabulaires')->get();
+        // dd($quiz);
+        return view('pages.quizzes.exemple',compact('quiz'));
     }
 }

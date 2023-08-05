@@ -24,7 +24,10 @@ class VocabulaireController extends Controller
             'language'=>'required|in:1,2,3',
         ]);
 
-        $vacabulaires= Vocabulaire::query()->where('user',auth()->user()->id)->latest('quiz')->first();
+        $vacabulaires= Vocabulaire::query()
+        ->where('user',auth()->user()->id)
+        ->latest('quiz')->first();
+        
         if($vacabulaires){
             $quiz_id = $vacabulaires->quiz ;
             $number_words=Vocabulaire::where('quiz',$quiz_id)

@@ -18,15 +18,15 @@ class QuizController extends Controller
         ->groupBy('quizzes.id')
         ->havingRaw('COUNT(quizzes.id) >= 2')        
         ->get();
-        // $quizzes_id=Quiz::has('vocabulaires', '>=', 2);
-        // Get a random key/index from the array
         foreach($quizzes_id as $index=>$value){
             $ids[$index]=$value->id;
         }
-        $randomKey = array_rand($ids);
-        $quiz_id = $quizzes_id[$randomKey]->id;
+        $quiz_id = $quizzes_id[array_rand($ids)]->id;
         $quiz=Quiz::query()->where('quizzes.id','=',$quiz_id)->with('vocabulaires')->get();
         // dd($quiz);
         return view('pages.quizzes.exemple',compact('quiz'));
+    }
+    public function resultat(){
+        return view('pages.quizzes.resultat');
     }
 }

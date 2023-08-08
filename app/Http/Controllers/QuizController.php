@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quiz;
+use App\Models\Vocabulaire;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -24,9 +25,13 @@ class QuizController extends Controller
         $quiz_id = $quizzes_id[array_rand($ids)]->id;
         $quiz=Quiz::query()->where('quizzes.id','=',$quiz_id)->with('vocabulaires')->get();
         // dd($quiz);
-        return view('pages.quizzes.exemple',compact('quiz'));
+        return view('pages.quizzes.quiz',compact('quiz'));
     }
     public function resultat(){
         return view('pages.quizzes.resultat');
+    }
+    public function getQuestion($id){
+        $quiz=Vocabulaire::query()->where('quiz',$id);
+        return response()->json($quiz);
     }
 }

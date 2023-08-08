@@ -44,7 +44,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::name('quizzes.')->prefix('quizzes')->controller(QuizController::class)->group(function(){
         Route::get('/language','language')->name('language');
         Route::get('/get/quiz','getQuiz')->name('get');
-        Route::get('/show','edit')->name('show');
+        Route::get('/quiz/{id}','getQuestion')->name('question');
         Route::post('/store','store')->name('store');
     });
 });

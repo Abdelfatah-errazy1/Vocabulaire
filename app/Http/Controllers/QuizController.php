@@ -15,6 +15,7 @@ class QuizController extends Controller
     public function getQuiz() {
         $quizzes_id=Quiz::query()
         ->join('vocabulaires', 'quizzes.id', '=', 'vocabulaires.quiz')
+        ->where('vocabulaires.user', auth()->user()->id)
         ->select('quizzes.id')
         ->groupBy('quizzes.id')
         ->havingRaw('COUNT(quizzes.id) >= 2')        
@@ -23,15 +24,16 @@ class QuizController extends Controller
             $ids[$index]=$value->id;
         }
         $quiz_id = $quizzes_id[array_rand($ids)]->id;
-        $quiz=Quiz::query()->where('quizzes.id','=',$quiz_id)->with('vocabulaires')->get();
+        $quiz=Quiz::query()->where('quizzes.id','=',$quiz_id)->first();
         // dd($quiz);
-        return view('pages.quizzes.quiz',compact('quiz'));
+        return view('pages.quizzes.quiz',['quiz_id'=>$quiz['id']]);
     }
     public function resultat(){
         return view('pages.quizzes.resultat');
     }
     public function getQuestion($id){
-        $quiz=Vocabulaire::query()->where('quiz',$id);
+        $quiz=Vocabulaire::query()->where('quiz',$id)->where('user',auth()->user()->id)->get();
+        // dd($quiz);
         return response()->json($quiz);
     }
 }

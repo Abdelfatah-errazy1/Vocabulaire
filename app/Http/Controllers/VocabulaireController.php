@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class VocabulaireController extends Controller
 {
+     public function __construct() {
+        
+    }
     public function index()  {
         $vocabulaires=Vocabulaire::query()
         ->where('user',auth()->user()->id)
@@ -35,22 +38,12 @@ class VocabulaireController extends Controller
 
             // dd($number_words);
             if($number_words>10){
-                $quiz_id= Quiz::create([
-                    'title'=>'quiz number '.$vacabulaires->quiz +2,
-                    'score_max'=>0,
-                    'last_score'=>0,
-                    'language'=>$validate['language'],
-                    ])->id;
+                $quiz_id= $this->createQuiz($vocabulaires->quiz,$validate['language']);
                     unset($validate['language']);
                     
                 }
         }else{
-            $quiz_id= Quiz::create([
-                'title'=>'quiz number 1 of user : '.auth()->user()->first_name,
-                'score_max'=>0,
-                'last_score'=>0,
-                'language'=>$validate['language'],
-                ])->id;
+            $quiz_id= $this->createQuiz($validate['language']);
 
         }
         $validate['quiz']=$quiz_id;
@@ -58,5 +51,15 @@ class VocabulaireController extends Controller
         // dd($validate);
         $vocabulaire=Vocabulaire::create($validate);
         return redirect( route('vocabulaire.index'));
+    }
+    private function createQuiz($quiz=null,$lang){
+        $quiz_id= Quiz::create([
+            'title'=>'quiz number '. $quiz?$quiz +2:'1',
+            'score_max'=>0,
+            'last_score'=>0,
+            'language'=>$lang,
+            ])->id;
+            return $quiz_id;
+
     }
 }
